@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import ClassVar
 
 
 @dataclass
@@ -31,9 +32,9 @@ class Training:
     duration: float
     weight: float
 
-    M_IN_KM = 1000
-    LEN_STEP = 0.65
-    MIN_IN_HOUR = 60
+    M_IN_KM: ClassVar[int] = 1000
+    LEN_STEP: ClassVar[float] = 0.65
+    MIN_IN_HOUR: ClassVar[int] = 60
 
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
@@ -60,8 +61,8 @@ class Training:
 class Running(Training):
     """Тренировка: бег."""
 
-    CALORIE_RUN_1 = 18
-    CALORIE_RUN_2 = 20
+    CALORIE_RUN_1: ClassVar[int] = 18
+    CALORIE_RUN_2: ClassVar[int] = 20
 
     def get_spent_calories(self) -> float:
         return ((self.CALORIE_RUN_1 * self.get_mean_speed()
@@ -74,8 +75,8 @@ class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     height: float
 
-    CALORIE_WALK_1 = 0.035
-    CALORIE_WALK_2 = 0.029
+    CALORIE_WALK_1: ClassVar[float] = 0.035
+    CALORIE_WALK_2: ClassVar[float] = 0.029
 
     def get_spent_calories(self) -> float:
         return ((self.CALORIE_WALK_1 * self.weight
@@ -90,8 +91,8 @@ class Swimming(Training):
     length_pool: int
     count_pool: int
 
-    LEN_STEP = 1.38
-    CALORIE_SWIMM = 1.1
+    LEN_STEP: ClassVar[float] = 1.38
+    CALORIE_SWIMM: ClassVar[float] = 1.1
 
     def get_mean_speed(self) -> float:
         return (self.length_pool
